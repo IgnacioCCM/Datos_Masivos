@@ -21,3 +21,6 @@ val spark = SparkSession.builder().appName("Spark CSV Reader").getOrCreate()
 ///////////////Cargar archivo//////////////
 val df = spark.read.option("header", "true").option("inferSchema","true")csv("/Users/admin/Documents/Github/Datos_Masivos/Netflix_2011_2016.csv")
 df.show()
+
+/////////////////Columnas//////////////////
+df.columns
