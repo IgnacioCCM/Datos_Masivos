@@ -12,3 +12,9 @@ acciones negociadas por un día. (Hint: Es una operación de columnas).
 significado de la columna Cerrar “Close”?
 10. ¿Cuál es el máximo y mínimo de la columna “Volume”?
 */
+
+///////////////////sesion//////////////////
+import org.apache.spark.sql.SparkSession
+
+val spark = SparkSession.builder().appName("Spark CSV Reader").getOrCreate()
+
