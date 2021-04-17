@@ -30,3 +30,11 @@ df.printSchema()
 
 ////////////////Primeras 5////////////////
 df.head(5)
+
+for(row <- df.head(5)){
+    println(row)
+}
+
+/////////////////describe/////////////////
+df.describe()
+
