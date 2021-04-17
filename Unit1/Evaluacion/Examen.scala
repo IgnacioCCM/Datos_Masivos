@@ -44,3 +44,10 @@ val df2 = df.withColumn("HV Ratio",df("High")/df("Volume"))
 //////////Maximo en columna close/////////
 df.select(max("Close")).show()
 
+/*
+La columna close hace referencia a la cifra monetaria en la que cerro por dia 
+*/
+
+/////////Max y Min columna volume//////////
+df.select(max("Volume")).show()
+df.select(min("Volume")).show()
