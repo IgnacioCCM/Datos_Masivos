@@ -38,3 +38,6 @@ for(row <- df.head(5)){
 /////////////////describe/////////////////
 df.describe()
 
+//////////////Nuevo dataframe/////////////
+val df2 = df.withColumn("HV Ratio",df("High")/df("Volume"))
+
