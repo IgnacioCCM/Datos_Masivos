@@ -1,13 +1,13 @@
 ### Practica de evaluacion
 
-#### sesion
+#### Sesion
 ```scala
 import org.apache.spark.sql.SparkSession
 
 val spark = SparkSession.builder().appName("Spark CSV Reader").getOrCreate()
 ```
 
-#### Cargar archivo
+####  Cargar archivo
 ```scala
 val df = spark.read.option("header", "true").option("inferSchema","true")csv("/Users/admin/Documents/Github/Datos_Masivos/Netflix_2011_2016.csv")
 df.show()
@@ -18,7 +18,7 @@ df.show()
 df.columns
 ```
 
-#### Esquema
+####  Esquema
 ```scala
 df.printSchema()
 ```
