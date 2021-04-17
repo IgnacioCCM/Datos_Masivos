@@ -1,4 +1,4 @@
-##### Practica de evaluacion
+### Practica de evaluacion
 
 #### sesion
 ```scala
@@ -23,27 +23,37 @@ df.columns
 df.printSchema()
 ```
 
-////////////////Primeras 5////////////////
+#### Primeras 5
+```scala
 df.head(5)
 
 for(row <- df.head(5)){
     println(row)
 }
+```
 
-/////////////////describe/////////////////
+#### describe
+```scala
 df.describe()
+```
 
-//////////////Nuevo dataframe/////////////
+#### Nuevo dataframe
+```scala
 val df2 = df.withColumn("HV Ratio",df("High")/df("Volume"))
+```
 
-//////////Maximo en columna close/////////
+#### Maximo en columna close
+```scala
 df.select(max("Close")).show()
+```
 
-/*
-La columna close hace referencia a la cifra monetaria en la que cerro por dia 
-*/
+```scala
+//La columna close hace referencia a la cifra monetaria en la que cerro por dia 
+```
 
 
-/////////Max y Min columna volume//////////
+#### Max y Min columna volume
+```scala
 df.select(max("Volume")).show()
 df.select(min("Volume")).show()
+```
