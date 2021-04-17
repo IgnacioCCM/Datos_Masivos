@@ -41,3 +41,6 @@ df.describe()
 //////////////Nuevo dataframe/////////////
 val df2 = df.withColumn("HV Ratio",df("High")/df("Volume"))
 
+//////////Maximo en columna close/////////
+df.select(max("Close")).show()
+
