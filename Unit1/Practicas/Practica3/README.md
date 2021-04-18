@@ -1,5 +1,6 @@
-//Primer algoritmo de fibonacci versión recursiva descendente
+## Algoritmos de fibonacci
 
+#### Primer algoritmo de fibonacci versión recursiva descendente
 
 def fibonacci1(n: Double): Double = {
    if (n < 2){
@@ -13,7 +14,7 @@ fibonacci1(1)
 fibonacci1(4)
 
 
-//Segundo algoritmo de fibonacci versión con fórmula explícita
+#### Segundo algoritmo de fibonacci versión con fórmula explícita
 
 
 def fibonacci2(n: Double): Double = {
@@ -30,7 +31,7 @@ fibonacci2(1)
 fibonacci2(4)
 
 
-//Tercer algoritmo de fibonacci versión iterativa
+#### Tercer algoritmo de fibonacci versión iterativa
 
 
 var k = 0
@@ -49,7 +50,7 @@ def fibonacci3(n: Int): Int = {
 fibonacci3(8)
 
 
-//Cuarto algoritmo de fibonacci versión iterativa 2 variables
+#### Cuarto algoritmo de fibonacci versión iterativa 2 variables
 
 
 var k = 0
@@ -66,7 +67,7 @@ def fibonacci4(n: Int): Int = {
 fibonacci4(2)
 
 
-//Quinto algoritmo de fibonacci versión iterativa vector
+#### Quinto algoritmo de fibonacci versión iterativa vector
 
 
 var k = 0
