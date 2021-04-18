@@ -1,3 +1,5 @@
+## ECUACIONES DE FIBONACCI
+
 ```scala
 import scala.math.sqrt
 ```
@@ -66,7 +68,8 @@ def fibonacci4(n: Int): Int = {
 fibonacci4(2)
 ```
 
-// quinta ecuacion 
+#### quinta ecuacion 
+```scala
 var k = 0
 
 def fibonacci5(n: Double): Double = {
@@ -82,3 +85,4 @@ def fibonacci5(n: Double): Double = {
     }
     return vector(n)
 }
+```
