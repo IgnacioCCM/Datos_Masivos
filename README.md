@@ -7,14 +7,13 @@
 
 ### <p align="center">  Maestro: Jose Christian Romero Hernandez	</p>
 ### <p align="center">  No. de control y nombre del alumno: 15211277 - Campos Morales Carlos Ignacio</p>
-### <p align="center">  No. de control y nombre del alumno: 15210743 - Vasquez Macias Cristo Josue</p>
 
 ______________
 
 ## Index
 
 * ## Evaluation
-   * [Evaluation Unit 1 ](https://github.com/IgnacioCCM/Mineria_de_datos/tree/unit1/unit1/Evaluation)
+   * [Evaluation Unit 1 ](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Evaluacion)
 * ## Homework
 [Homework_1](https://github.com/IgnacioCCM/Mineria_de_datos/tree/unit1/unit1/Homework)
 
