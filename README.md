@@ -21,7 +21,7 @@ ______________
   
   * [Practice 1](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica1)
   * [Practice 2](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica2)
-  * [Practice 3](https://github.com/IgnacioCCM/Mineria_de_datos/tree/unit1/unit1/Practices/Practice3)
+  * [Practice 3](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica3)
 
 * ## Research
 [Research_1](https://github.com/IgnacioCCM/Mineria_de_datos/tree/unit1/unit1/Research)
