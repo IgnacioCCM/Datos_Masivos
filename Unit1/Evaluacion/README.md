@@ -23,7 +23,7 @@ df.columns
 df.printSchema()
 ```
 
-#### Primeros 5 
+#### Primeros 5 renglones
 ```scala
 df.head(5)
 
