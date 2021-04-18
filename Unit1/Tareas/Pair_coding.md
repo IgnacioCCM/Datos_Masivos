@@ -1,3 +1,5 @@
+## Pair coding 
+
 ¿ Qué es pair coding ?
 Se utiliza principalmente en el desarrollo ágil de software y, más concretamente, en la programación extrema (XP). El pair programming especifica que siempre hay dos personas trabajando al mismo tiempo en el código y que, en la medida de lo posible, se sienten juntas. Una se encarga de escribir el código y la otra de supervisar en tiempo real. Al mismo tiempo, están constantemente intercambiando impresiones: debaten problemas, encuentran soluciones y desarrollan ideas creativas.
 
