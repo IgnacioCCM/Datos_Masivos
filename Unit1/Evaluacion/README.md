@@ -18,12 +18,12 @@ df.show()
 df.columns
 ```
 
-####  Esquema
+#### Esquema
 ```scala
 df.printSchema()
 ```
 
-#### Primeras 5
+#### Primeras 5
 ```scala
 df.head(5)
 
@@ -32,7 +32,7 @@ for(row <- df.head(5)){
 }
 ```
 
-#### describe
+#### describe
 ```scala
 df.describe()
 ```
