@@ -68,7 +68,7 @@ def fibonacci4(n: Int): Int = {
 fibonacci4(2)
 ```
 
-#### quinta ecuacion 
+#### Quinta ecuacion 
 ```scala
 var k = 0
 
