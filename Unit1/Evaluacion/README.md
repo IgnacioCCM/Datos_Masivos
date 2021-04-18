@@ -52,7 +52,7 @@ df.select(max("Close")).show()
 ```
 
 
-#### Max y Min columna volume
+#### Valores maximo y minimo de columna volume
 ```scala
 df.select(max("Volume")).show()
 df.select(min("Volume")).show()
