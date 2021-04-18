@@ -13,17 +13,17 @@ val df = spark.read.option("header", "true").option("inferSchema","true")csv("/U
 df.show()
 ```
 
-#### Columnas
+#### Ver columnas
 ```scala
 df.columns
 ```
 
-#### Esquema
+#### Ver esquema
 ```scala
 df.printSchema()
 ```
 
-#### Primeras 5
+#### Primeros 5 
 ```scala
 df.head(5)
 
