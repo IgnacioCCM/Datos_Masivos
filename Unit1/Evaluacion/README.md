@@ -1,6 +1,6 @@
 ### Practica de evaluacion
 
-#### Sesion
+#### Iniciar una sesion
 ```scala
 import org.apache.spark.sql.SparkSession
 
