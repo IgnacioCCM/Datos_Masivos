@@ -33,5 +33,5 @@ El algoritmo funciona completando los siguientes pasos:
 
 <p>Cardellino F. (2021). Tutorial para un clasificador basado en bosques aleatorios: cómo utilizar algoritmos basados en árboles para el aprendizaje automático. mayo 03, 2021, de freecodecamp Sitio web: https://www.freecodecamp.org/espanol/news/random-forest-classifier-tutorial-how-to-use-tree-based-algorithms-for-machine-learning/</p>
 
-
+<p>Gonzales L. (2018). Aprendizaje Supervisado: Random Forest Classification. mayo 03, 2021, de aprendeIA Sitio web: https://aprendeia.com/aprendizaje-supervisado-random-forest-classification/</p>
 
