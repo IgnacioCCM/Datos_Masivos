@@ -17,7 +17,9 @@ El algoritmo funciona completando los siguientes pasos:
 
 <p> Paso 4: Y finalmente, el algoritmo seleccionará el resultado de predicción más votado como predicción final.</p> 
 
-
+<p align="center">
+  <img src="https://www.iartificial.net/wp-content/uploads/2019/06/Random-Forest-Bagging.webp" />
+</p>
 
 ## Ventajas
 * Puede resolver ambos tipos de problemas, es decir, clasificación y regresión, y realiza una estimación decente en ambos casos.
