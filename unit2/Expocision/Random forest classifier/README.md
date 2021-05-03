@@ -28,3 +28,10 @@ El algoritmo funciona completando los siguientes pasos:
 
 ## Desventajas
 * En ocasiones se puede parecer este algoritmo como una caja negra, ya que se tiene muy poco control sobre lo que hace el modelo. Puedes, en el mejor de los casos, probar diferentes parámetros y datos aleatorios.
+
+## Bibliografia
+
+<p>Cardellino F. (2021). Tutorial para un clasificador basado en bosques aleatorios: cómo utilizar algoritmos basados en árboles para el aprendizaje automático. mayo 03, 2021, de freecodecamp Sitio web: https://www.freecodecamp.org/espanol/news/random-forest-classifier-tutorial-how-to-use-tree-based-algorithms-for-machine-learning/</p>
+
+
+
