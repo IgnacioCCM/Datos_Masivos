@@ -29,6 +29,11 @@ El algoritmo funciona completando los siguientes pasos:
 ## Desventajas
 * En ocasiones se puede parecer este algoritmo como una caja negra, ya que se tiene muy poco control sobre lo que hace el modelo. Puedes, en el mejor de los casos, probar diferentes parámetros y datos aleatorios.
 
+## Aplicaciones
+<p>Para proporcionar recomendaciones de diferentes productos a los clientes en el comercio electrónico.</p>
+<p>En medicina, el algoritmo puede ser utilizado para identificar la enfermedad del paciente a través del análisis de su historial médico.</p>
+<p>También en el sector bancario, puede ser utilizado para determinar fácilmente si el cliente es fraudulento o legítimo.</p>
+
 ## Video
 https://www.youtube.com/watch?v=VH7eLWsLCks&t=212s
 
