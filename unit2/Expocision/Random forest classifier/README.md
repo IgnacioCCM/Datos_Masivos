@@ -27,7 +27,10 @@ El algoritmo funciona completando los siguientes pasos:
 * Tiene un método efectivo para estimar datos faltantes y mantiene la precisión cuando falta una gran proporción de los datos.
 
 ## Desventajas
-* En ocasiones se puede parecer este algoritmo como una caja negra, ya que se tiene muy poco control sobre lo que hace el modelo. Puedes, en el mejor de los casos, probar diferentes parámetros y datos aleatorios.
+* En ocasiones se puede parecer este algoritmo como una caja negra, ya que se tiene muy poco control sobre lo que hace el modelo. 
+* Perdida de interpretacion.
+* Se aumenta el período de entrenamiento, el Random Forest requiere mucho más tiempo
+para entrenar en comparación con los árboles de decisión normales, ya que genera muchos árboles y toma la decisión sobre la mayoría de los votos.
 
 ## Aplicaciones
 <p>Para proporcionar recomendaciones de diferentes productos a los clientes en el comercio electrónico.</p>
