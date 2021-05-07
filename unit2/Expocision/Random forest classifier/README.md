@@ -37,8 +37,8 @@ para entrenar en comparación con los árboles de decisión normales, ya que gen
 <p>También en el sector bancario, puede ser utilizado para determinar fácilmente si el cliente es fraudulento o legítimo.</p>
 
 ## Video
-https://www.youtube.com/watch?v=VH7eLWsLCks&t=212s
-https://www.youtube.com/watch?v=eoIgGqnJCkA
+<p>https://www.youtube.com/watch?v=VH7eLWsLCks&t=212s</p>
+<p>https://www.youtube.com/watch?v=eoIgGqnJCkA</p>
 
 ## Bibliografia
 
