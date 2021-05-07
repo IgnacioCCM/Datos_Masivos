@@ -38,6 +38,7 @@ para entrenar en comparación con los árboles de decisión normales, ya que gen
 
 ## Video
 https://www.youtube.com/watch?v=VH7eLWsLCks&t=212s
+https://www.youtube.com/watch?v=eoIgGqnJCkA
 
 ## Bibliografia
 
