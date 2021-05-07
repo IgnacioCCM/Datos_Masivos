@@ -1,4 +1,4 @@
-# <p align="center" > Bosques aleatorios de clasificaion </p> 
+# <p align="center" > Bosques aleatorios de clasificacion </p> 
 
 ## ¿Que son los bosques aleatorios?
 
