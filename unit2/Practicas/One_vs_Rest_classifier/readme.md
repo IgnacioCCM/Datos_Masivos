@@ -1,31 +1,51 @@
-![](docs/portadatcnm.png)
+# <p align="center"> One vs Rest Classifier </p>
 
-# <p align="center"> Tecnológico Nacional de México </p>
-// Importar Librerias
+
+Import Libraries
+```scala
 import org.apache.spark.ml.classification.{LogisticRegression, OneVsRest}
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+```
 
-// Cargar el archivo
+Upload the file
+```scala
 val inputData = spark.read.format("libsvm").load("sample_multiclass_classification_data.txt")
+```
 
-// Generar la division de conjunto train y test.
+
+
+Generate the division of the train and test set.
+```scala
 val Array(train, test) = inputData.randomSplit(Array(0.8, 0.2))
+```
 
-// Instanciar el clasificador base
+Instantiate the base classifier
+```scala
 val classifier = new LogisticRegression().setMaxIter(10).setTol(1E-6).setFitIntercept(true)
+```
 
-// Se crea una instancia del clasificador One Vs Rest.
+An instance of the One Vs Rest classifier is created.
+```scala
 val ovr = new OneVsRest().setClassifier(classifier)
+```
 
-// Se entrena (train) el modelo multiclase.
+The multiclass model is trained.
+```scala
 val ovrModel = ovr.fit(train)
+```
 
-// Se puntua el modelo en los datos de prueba (test).
+The model is scored on the test data.
+```scala
 val predictions = ovrModel.transform(test)
+```
 
-// Se obtiene el evaluador
+You get the evaluator
+```scala
 val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
+```
 
-// Se calcula el error de clasificación en los datos de prueba.
+The classification error is calculated on the test data.
+```scala
 val accuracy = evaluator.evaluate(predictions)
 println(s"Test Error = ${1 - accuracy}")
+```
