@@ -2,33 +2,33 @@
 
 # <p align="center"> Tecnológico Nacional de México </p>
 
-//Importamos la librería "LinearSVC", este clasificador binario optimiza la pérdida de bisagra utilizando el optimizador OWLQN.  
+We import the "LinearSVC" library, this binary classifier optimizes the hinge loss using the OWLQN optimizer.
 ```scala
 import org.apache.spark.ml.classification.LinearSVC
 ```
 
-// Importamos y creamos la sesión en spark.
+We import and create the session in spark.
 ```scala
 import org.apache.spark.sql.SparkSession
 val spark = SparkSession.builder.appName("LinearSVCExample").getOrCreate()
 ```
 
-// Cargamos los datos de entrenamiento.
+We load the training data.
 ```scala
 val training = spark.read.format("libsvm").load("/Archivos/sample_libsvm_data.txt")
 ```
 
-// Establecemos el número máximo de iteraciones y el parámetro de regularización.
+We set the maximum number of iterations and the regularization parameter.
 ```scala
 val lsvc = new LinearSVC().setMaxIter(10).setRegParam(0.1)
 ```
 
-// Realizamos un fit para ajustar el modelo.
+We perform a fit to adjust the model.
 ```scala
 val lsvcModel = lsvc.fit(training)
 ```
 
-// Imprime los coeficientes e intercepta para el Linear SVC.
+Print the coefficients and intercepts for the Linear SVC.
 ```scala
 println(s"Coefficients: ${lsvcModel.coefficients} Intercept: ${lsvcModel.intercept}")
 ```
