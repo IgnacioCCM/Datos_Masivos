@@ -1,7 +1,8 @@
 ![](docs/portadatcnm.png)
 
 # <p align="center"> Tecnológico Nacional de México </p>
-// Importamos las librerias que ocupamos
+
+We import the libraries we occupy
 ```scala
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.classification.{GBTClassificationModel, GBTClassifier}
@@ -9,13 +10,13 @@ import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}
 ```
 
-// Cargamos el archivo txt de la ruta establecida
+We load the txt file of the established path
 ```scala
 val data = spark.read.format("libsvm").load("sample_libsvm_data.txt")
 ```
 
 
-//Crearmos una columna usando stringIndexer para que los datos tengan su categorización
+We will create a column using stringIndexer so that the data has its categorization
 ```scala
 val labelIndexer = new StringIndexer()
   .setInputCol("label")
@@ -23,7 +24,9 @@ val labelIndexer = new StringIndexer()
   .fit(data)
 ```
   
-// Creamos un vector que tendra un maximo de 4 categorias
+
+
+We create a vector that will have a maximum of 4 categories
 ```scala
 val featureIndexer = new VectorIndexer()
   .setInputCol("features")
@@ -32,12 +35,12 @@ val featureIndexer = new VectorIndexer()
   .fit(data)
 ```
 
-// Separamos los datos en dos partes, un llamado training con 70% y el otro test seta con 30%
+We separate the data into two parts, one called training with 70% and the other mushroom test with 30%
 ```scala
 val Array(trainingData, testData) = data.randomSplit(Array(0.7, 0.3))
 ```
 
-//Se entren al modelo GPT
+They enter the GPT model
 ```scala
 val gbt = new GBTClassifier()
   .setLabelCol("indexedLabel")
@@ -46,7 +49,7 @@ val gbt = new GBTClassifier()
   .setFeatureSubsetStrategy("auto")
 ```
 
-//Comvertimos las etiqutas indezadas a etiquetas originales
+We convert indented labels to original labels
 ```scala
 val labelConverter = new IndexToString()
   .setInputCol("prediction")
@@ -54,28 +57,28 @@ val labelConverter = new IndexToString()
   .setLabels(labelIndexer.labels)
 ```
 
-//La cadena de los indezadores y GPT EN Pipeline
+The Chain of Indenters and GPT EN Pipeline
 ```scala
 val pipeline = new Pipeline()
   .setStages(Array(labelIndexer, featureIndexer, gbt, labelConverter))
 ```
 
-//Se entreana al modelo. Esto también ejecuta los indexadores
+The model is trained. This also runs the indexers
 ```scala
 val model = pipeline.fit(trainingData)
 ```
 
-//Creamos las predicciones.
+We create the predictions.
 ```scala
 val predictions = model.transform(testData)
 ```
 
-//Selecionamos las primeras 5 filas para desplegarlas
+We select the first 5 rows to display them
 ```scala
 predictions.select("predictedLabel", "label", "features").show(5)
 ```
 
-//Seleccionamos prediccion y calculo del error de prueba.
+We select prediction and calculation of the test error.
 ```scala
 val evaluator = new MulticlassClassificationEvaluator()
   .setLabelCol("indexedLabel")
