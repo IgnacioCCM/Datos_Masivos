@@ -1,6 +1,4 @@
-![](docs/portadatcnm.png)
-
-# <p align="center"> Tecnológico Nacional de México </p>
+# <p align="center"> Linear Support Vector Machine </p>
 
 We import the "LinearSVC" library, this binary classifier optimizes the hinge loss using the OWLQN optimizer.
 ```scala
