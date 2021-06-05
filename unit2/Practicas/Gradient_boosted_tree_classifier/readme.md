@@ -1,6 +1,4 @@
-![](docs/portadatcnm.png)
-
-# <p align="center"> Tecnológico Nacional de México </p>
+# <p align="center"> Gradient boosted tree classifier </p>
 
 We import the libraries we occupy
 ```scala
