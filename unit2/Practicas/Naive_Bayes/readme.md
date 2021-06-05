@@ -1,4 +1,4 @@
-# <p align="center"> Tecnológico Nacional de México </p>
+# <p align="center"> Naive Bayes </p>
 ```scala
 import org.apache.spark.ml.classification.NaiveBayes
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
