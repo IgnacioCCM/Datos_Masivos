@@ -1,16 +1,33 @@
 ![](docs/portadatcnm.png)
 
 # <p align="center"> Tecnológico Nacional de México </p>
-# <p align="center"> Instituto Tecnológico de Tijuana </p>
-# <p align="center"> Subdirección Académica </p>
-# <p align="center"> Departamento de Sistemas y Computación </p>
-## <p align="center"> Ingeniería en Sistemas Computacionales </p>
-## <p align="center"> LENGUAJES DE INTERFAZ </p>
-## <p align="center"> Profesor: MC. René Solis Reyes </p>
-## <p align="center"> Semestre sep - ene 2021 </p>
-----
-# <p align="center"> Practica Bloque: 4 📝 </p>
-# <p align="center"> Objetivo:  AUTOMATIZACIÓN USANDO "MAKE" EN TERMINAL </p>
-----
+import org.apache.spark.ml.classification.NaiveBayes
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+import org.apache.spark.sql.SparkSession
 
-# <p align="center"> 📝 Campos Morales Carlos Ignacio 15211277 </p>
+// Cargar datos en formato de almacenamiento LIBSVM como un DataFrame.
+val data = spark.read.format("libsvm").load("C:/Users/brise/Documents/GitHub/NaiveBayes/sample_libsvm_data.txt")
+
+println ("Numero de lineas en el archivo de datos:" + data.count ())
+
+// Mostrar 20 líneas por defecto
+data.show()
+
+// Divida aleatoriamente el conjunto de datos en conjunto de entrenamiento y conjunto de prueba de acuerdo con los pesos proporcionados. También puede especificar una semilla
+val Array (trainingData, testData) = data.randomSplit (Array (0.7, 0.3), 100L) // El resultado es el tipo de matriz, y la matriz almacena los datos del tipo DataSet
+
+// Incorporar al conjunto de entrenamiento (operación de ajuste) para entrenar un modelo bayesiano
+val naiveBayesModel = new NaiveBayes().fit(trainingData)
+
+// El modelo llama a transform () para hacer predicciones y generar un nuevo DataFrame
+val predictions = naiveBayesModel.transform(testData)
+
+// Salida de datos de resultados de predicción
+predictions.show()
+ 
+//Evaluación de precisión del modelo
+val evaluator = new MulticlassClassificationEvaluator().setLabelCol("label").setPredictionCol("prediction").setMetricName("accuracy")
+
+val precision = evaluator.evaluate (predictions) // Precisión
+
+println ("tasa de error =" + (1-precision))
