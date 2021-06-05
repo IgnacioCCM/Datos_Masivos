@@ -1,16 +1,31 @@
 ![](docs/portadatcnm.png)
 
 # <p align="center"> Tecnológico Nacional de México </p>
-# <p align="center"> Instituto Tecnológico de Tijuana </p>
-# <p align="center"> Subdirección Académica </p>
-# <p align="center"> Departamento de Sistemas y Computación </p>
-## <p align="center"> Ingeniería en Sistemas Computacionales </p>
-## <p align="center"> LENGUAJES DE INTERFAZ </p>
-## <p align="center"> Profesor: MC. René Solis Reyes </p>
-## <p align="center"> Semestre sep - ene 2021 </p>
-----
-# <p align="center"> Practica Bloque: 4 📝 </p>
-# <p align="center"> Objetivo:  AUTOMATIZACIÓN USANDO "MAKE" EN TERMINAL </p>
-----
+// Importar Librerias
+import org.apache.spark.ml.classification.{LogisticRegression, OneVsRest}
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 
-# <p align="center"> 📝 Campos Morales Carlos Ignacio 15211277 </p>
+// Cargar el archivo
+val inputData = spark.read.format("libsvm").load("sample_multiclass_classification_data.txt")
+
+// Generar la division de conjunto train y test.
+val Array(train, test) = inputData.randomSplit(Array(0.8, 0.2))
+
+// Instanciar el clasificador base
+val classifier = new LogisticRegression().setMaxIter(10).setTol(1E-6).setFitIntercept(true)
+
+// Se crea una instancia del clasificador One Vs Rest.
+val ovr = new OneVsRest().setClassifier(classifier)
+
+// Se entrena (train) el modelo multiclase.
+val ovrModel = ovr.fit(train)
+
+// Se puntua el modelo en los datos de prueba (test).
+val predictions = ovrModel.transform(test)
+
+// Se obtiene el evaluador
+val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
+
+// Se calcula el error de clasificación en los datos de prueba.
+val accuracy = evaluator.evaluate(predictions)
+println(s"Test Error = ${1 - accuracy}")
