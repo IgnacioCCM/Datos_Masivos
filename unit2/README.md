@@ -13,13 +13,18 @@ ______________
 ## Index
 
 * ## Evaluation
-   * [Evaluation Unit 1 ](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Evaluacion)
+   * [Evaluation Unit 2 ](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Evaluacion)
 * ## Homework
    * [Homework_1](https://github.com/IgnacioCCM/Datos_Masivos/blob/unit1/Unit1/Tareas/Pair_coding.md)
 
 * ## Practices
   
-  * [Practice 1](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica1)
-  * [Practice 2](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica2)
-  * [Practice 3](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica3)
+  * [Practice 1](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Correlation)
+  * [Practice 2](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Decision_Tree_Classifier)
+  * [Practice 3](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Expocision/Random_forest_classifier)
+  * [Practice 4](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Gradient_boosted_tree_classifier)
+  * [Practice 5](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Linear_Support_Vector_Machine)
+  * [Practice 6](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Multilayer_perceptron_classifier)
+  * [Practice 7](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Naive_Bayes)
+  * [Practice 8](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/One_vs_Rest_classifier)
 
