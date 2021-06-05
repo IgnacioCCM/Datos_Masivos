@@ -1,6 +1,4 @@
-![](docs/portadatcnm.png)
-
-# <p align="center"> Tecnológico Nacional de México </p>
+# <p align="center"> Decision Tree Classifier </p>
 The following example loads a dataset and divides it into test and training sets.
 
 Import the necessary libraries
