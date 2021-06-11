@@ -1,3 +1,6 @@
+cd /usr/local/
+cd spark
+bin/spark-shell
 import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 import org.apache.spark.ml.feature. {VectorAssembler, StringIndexer}
