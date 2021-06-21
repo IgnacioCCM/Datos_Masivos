@@ -13,18 +13,5 @@ ______________
 ## Index
 
 * ## Evaluation
-   * [Evaluation Unit 2 ](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Evaluacion)
-* ## Homework
-   * [Homework_1](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Expocision/Random_forest_classifier)
-
-* ## Practices
-  
-  * [Practice 1](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Correlation)
-  * [Practice 2](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Decision_Tree_Classifier)
-  * [Practice 3](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Expocision/Random_forest_classifier)
-  * [Practice 4](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Gradient_boosted_tree_classifier)
-  * [Practice 5](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Linear_Support_Vector_Machine)
-  * [Practice 6](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Multilayer_perceptron_classifier)
-  * [Practice 7](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/Naive_Bayes)
-  * [Practice 8](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit2/unit2/Practicas/One_vs_Rest_classifier)
+   * [Evaluation Unit 3 ](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit3/Unit3/Evaluacion)
 
