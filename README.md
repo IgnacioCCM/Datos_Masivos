@@ -13,13 +13,4 @@ ______________
 ## Index
 
 * ## Evaluation
-   * [Evaluation Unit 1 ](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Evaluacion)
-* ## Homework
-   * [Homework_1](https://github.com/IgnacioCCM/Datos_Masivos/blob/unit1/Unit1/Tareas/Pair_coding.md)
-
-* ## Practices
-  
-  * [Practice 1](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica1)
-  * [Practice 2](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica2)
-  * [Practice 3](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Practicas/Practica3)
-
+   * [Evaluation Unit 3 ](https://github.com/IgnacioCCM/Datos_Masivos/tree/unit1/Unit1/Evaluacion)
