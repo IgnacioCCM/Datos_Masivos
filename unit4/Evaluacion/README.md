@@ -124,7 +124,8 @@ val treeModel = model.stages(2).asInstanceOf[DecisionTreeClassificationModel]
 println(s"Learned classification tree model:\n ${treeModel.toDebugString}")
 ```
 
-/////////////////////////////////////////////////////////Logistic Regresion//////////////////////////////////////////////////////////////////
+### <p align="center" > Logistic Regresion </p>
+
 ```scala
 import org.apache.spark.ml.feature.{VectorAssembler, StringIndexer, VectorIndexer, OneHotEncoder}
 import org.apache.spark.ml.classification.LogisticRegression
@@ -149,7 +150,7 @@ val df2 = featurestransform.select("features", "label")
 val logregdata = df2.na.drop()
 ```
 
-//val assembler = (new VectorAssembler(). setInputCols (Array ("balance", "duration", "campaign", "previous")).setOutputCol("features"))
+
 ```scala
 val Array(training, test) = df2.randomSplit(Array(0.7, 0.3), seed = 12345)
 
@@ -157,7 +158,7 @@ val Array(training, test) = df2.randomSplit(Array(0.7, 0.3), seed = 12345)
 val lr = new LogisticRegression()
 ```
 
-// val pipeline = new Pipeline().setStages(Array(genderIndexer,embarkIndexer,embarkEncoder,assembler,lr))
+
 ```scala
 val pipeline = new Pipeline().setStages(Array(genderIndexer,genderEncoder,assembler,lr))
 
@@ -166,7 +167,7 @@ val model = pipeline.fit(training)
 val results = model.transform(test)
 ```
 
-//Probar el modelo solo se puede con la libreria vieja
+Testing the model can only be done with the old library
 ```scala
 import org.apache.spark.mllib.evaluation.MulticlassMetrics
 
@@ -174,40 +175,40 @@ val predictionAndLabels = results.select($"prediction",$"label").as[(Double, Dou
 val metrics = new MulticlassMetrics(predictionAndLabels)
 ```
 
-// Matriz de confusion
+Confusion matrix
 ```scala
 println("Confusion matrix:")
 println(metrics.confusionMatrix)
 
 metrics.accuracy
 ```
-/////////////////////////////////////////////////////////Multilayer perceptron///////////////////////////////////////////////////////////////
+### <p align="center" > Multilayer perceptron </p>
+Import of libraries
 ```scala
 import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 ```
 
-// Split the data into train and test
+Split the data into train and test
 ```scala
 val splits = df2.randomSplit(Array(0.7, 0.3), seed = 12345)
 val train = splits(0)
 val test = splits(1)
 ```
 
-// specify layers for the neural network:
-// input layer of size 4 (features), two intermediate of size 5 and 4
-// and output of size 3 (classes)
+specify layers for the neural network:
+input layer of size 4 (features), two intermediate of size 5 and 4 and output of size 3 (classes)
 ```scala
 val layers = Array[Int](4, 5, 4, 3)
 ```
 
-// create the trainer and set its parameters
+create the trainer and set its parameters
 ```scala
 val trainer = new MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setSeed(1234L).setMaxIter(100)
 val model = trainer.fit(train)
 ```
 
-// compute accuracy on the test set
+compute accuracy on the test set
 ```scala
 val result = model.transform(test)
 val predictionAndLabels = result.select("prediction", "label")
