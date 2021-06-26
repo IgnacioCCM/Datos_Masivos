@@ -1,65 +1,215 @@
 # <p align="center" > Evaluacion </p> 
 
-Importar sesion en spark
+Importacion de librerias
 ```scala
-import org.apache.spark.sql.SparkSession 
-```
-
-Minimizando errores
-```scala
+import org.apache.spark.ml.feature. {VectorAssembler, StringIndexer}
+import org.apache.spark.sql.SparkSession
 import org.apache.log4j._
-Logger.getLogger("org").setLevel(Level.ERROR)
 ```
-
-Inicio de sesion
+////////////////////Inicio de sesion///////////////////////////////
 ```scala
 val Spark = SparkSession.builder().getOrCreate()
 ```
 
-Libreria KMeans
+////////////////////////Cargar archivo csv/////////////////////////
 ```scala
-import org.apache.spark.ml.clustering.KMeans
+val df = spark.read.option("header", "true").option("inferSchema","true").option("delimiter", ";")csv("/Users/admin/Documents/Github/Datos_Masivos/bank-full.csv")
+
+df.printSchema()
 ```
 
-Carga del dataset
+////////////////////////Tranformacion de los datos///////////////////////
 ```scala
-val df = spark.read.option("header", "true").option("inferSchema","true")csv("/Users/admin/Documents/Github/Datos_Masivos/BigData/Scala_Kmeans/Wholesale customers data.csv")
+val label = new StringIndexer().setInputCol("y").setOutputCol("label")
+val labeltransform = label.fit(df).transform(df)
+
+val Features = (new VectorAssembler(). setInputCols (Array ("balance", "duration", "campaign", "previous")).setOutputCol("features"))
+val featurestransform = Features.transform(labeltransform)
+
+val df2 = featurestransform.select("features", "label")
+```
+/////////////////////////////////////////////////////////////////SVM////////////////////////////////////////////////////////////////////////
+```scala
+import org.apache.spark.ml.classification.LinearSVC
+```
+// Split data into training (60%) and test (40%).
+```scala
+val splits = df2.randomSplit(Array(0.7, 0.3), seed = 11L)
+val training = splits(0)
+val test = splits(1)
+
+val lsvc = new LinearSVC().setMaxIter(10).setRegParam(0.1)
+```
+// Realizamos un fit para ajustar el modelo.
+```scala
+val lsvcModel = lsvc.fit(training)
 ```
 
-Creacion de columna features_data
+// Imprime los coeficientes e intercepta para el Linear SVC.
 ```scala
-val feacture_data = df.select("Fresh", "Milk", "Grocery", "Frozen", "Detergents_Paper", "Delicassen")
+println(s"Coefficients: ${lsvcModel.coefficients} Intercept: ${lsvcModel.intercept}")
 ```
 
-Importacion de librerias
+/////////////////////////////////////////////////////////Decision Three////////////////////////////////////////////////////////////////
 ```scala
+import  org.apache.spark.ml.Pipeline 
+import  org.apache.spark.ml.classification.DecisionTreeClassificationModel 
+import  org.apache.spark.ml.classification.DecisionTreeClassifier 
+import  org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator 
+import  org.apache .spark.ml.feature. { IndexToString ,  StringIndexer ,  VectorIndexer }
+```
+
+// Etiquetas de índice, agregando metadatos a la columna de etiquetas. 
+// Encajar en el conjunto de datos completo para incluir todas las etiquetas en el índice. 
+```scala
+val labelIndexer = new StringIndexer().setInputCol("label").setOutputCol("indexedLabel").fit(df2)
+```
+
+// Identifica automáticamente características categóricas e indexalas. 
+```scala
+val featureIndexer = new VectorIndexer().setInputCol("features").setOutputCol("indexedFeatures").setMaxCategories(4).fit(df2)
+```
+
+// Divida los datos en conjuntos de prueba y entrenamiento (30% reservado para pruebas). 
+```scala
+val Array(trainingData, testData) = df2.randomSplit(Array(0.7, 0.3))
+```
+
+// Entrene un modelo DecisionTree. 
+```scala
+val dt = new DecisionTreeClassifier().setLabelCol("indexedLabel").setFeaturesCol("indexedFeatures")
+```
+
+// Convertir etiquetas indexadas de nuevo a etiquetas originales. 
+```scala
+val labelConverter = new IndexToString().setInputCol("prediction").setOutputCol("predictedLabel").setLabels(labelIndexer.labels)
+```
+
+// Cadena de indexadores y árbol en un Pipeline. 
+```scala
+val pipeline = new Pipeline().setStages(Array(labelIndexer, featureIndexer, dt, labelConverter))
+```
+
+// Modelo de train. Esto también ejecuta los indexadores. 
+```scala
+val model = pipeline.fit(trainingData)
+```
+
+// Hacer predicciones. 
+```scala
+val predictions = model.transform(testData)
+```
+
+// Seleccione filas de ejemplo para mostrar. En este caso solo seran 10
+```scala
+predictions.select("predictedLabel", "label", "features").show(10)
+```
+
+// Seleccione (predicción, etiqueta verdadera).
+```scala
+val evaluator = new MulticlassClassificationEvaluator().setLabelCol("indexedLabel").setPredictionCol("prediction").setMetricName("accuracy")
+```
+
+// calcule el error de prueba. 
+```scala
+val accuracy = evaluator.evaluate(predictions)
+println(s"Test Error = ${(1.0 - accuracy)}")
+```
+
+// Mostrar por etapas la clasificación del modelo de árbol
+```scala
+val treeModel = model.stages(2).asInstanceOf[DecisionTreeClassificationModel]
+println(s"Learned classification tree model:\n ${treeModel.toDebugString}")
+```
+
+/////////////////////////////////////////////////////////Logistic Regresion//////////////////////////////////////////////////////////////////
+```scala
+import org.apache.spark.ml.feature.{VectorAssembler, StringIndexer, VectorIndexer, OneHotEncoder}
+import org.apache.spark.ml.classification.LogisticRegression
 import org.apache.spark.ml.feature.VectorAssembler
-import org.apache.spark.mllib.linalg.Vector
+import org.apache.spark.ml.linalg.Vectors
+import org.apache.spark.ml.Pipeline
+import org.apache.log4j._
+
+
+Logger.getLogger("org").setLevel(Level.ERROR)
+
+df.printSchema()
+
+val label = new StringIndexer().setInputCol("y").setOutputCol("label")
+val labeltransform = label.fit(df).transform(df)
+
+val assembler = (new VectorAssembler(). setInputCols (Array ("balance", "duration", "campaign", "previous")).setOutputCol("features"))
+val featurestransform = assembler.transform(labeltransform)
+
+val df2 = featurestransform.select("features", "label")
+
+val logregdata = df2.na.drop()
 ```
 
-Creacion un nuevo objeto Vector Assembler
+//val assembler = (new VectorAssembler(). setInputCols (Array ("balance", "duration", "campaign", "previous")).setOutputCol("features"))
 ```scala
-val assembler = (new VectorAssembler(). setInputCols (Array ("Fresh", "Milk", "Grocery", "Frozen", "Detergents_Paper", "Delicassen")).setOutputCol("features"))
+val Array(training, test) = df2.randomSplit(Array(0.7, 0.3), seed = 12345)
+
+
+val lr = new LogisticRegression()
 ```
 
-Transformacion a feature_data
+// val pipeline = new Pipeline().setStages(Array(genderIndexer,embarkIndexer,embarkEncoder,assembler,lr))
 ```scala
-val featurestransform = assembler.transform(feacture_data)
+val pipeline = new Pipeline().setStages(Array(genderIndexer,genderEncoder,assembler,lr))
 
-val df2 = featurestransform.select("features")
+val model = pipeline.fit(training)
+
+val results = model.transform(test)
 ```
 
-Modelo Kmeans
+//Probar el modelo solo se puede con la libreria vieja
 ```scala
-val kmeans = new KMeans().setK(3).setSeed(1L)
-val model = kmeans.fit(df2)
+import org.apache.spark.mllib.evaluation.MulticlassMetrics
+
+val predictionAndLabels = results.select($"prediction",$"label").as[(Double, Double)].rdd
+val metrics = new MulticlassMetrics(predictionAndLabels)
 ```
 
-Evaluacion con WSSE
+// Matriz de confusion
 ```scala
-val WSSE = model.computeCost(df2)
-println(s"Within set sum of Squared Errors = $WSSE")
+println("Confusion matrix:")
+println(metrics.confusionMatrix)
 
-println("Cluster Centers: ")
-model.clusterCenters.foreach(println)
+metrics.accuracy
+```
+/////////////////////////////////////////////////////////Multilayer perceptron///////////////////////////////////////////////////////////////
+```scala
+import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+```
+
+// Split the data into train and test
+```scala
+val splits = df2.randomSplit(Array(0.7, 0.3), seed = 12345)
+val train = splits(0)
+val test = splits(1)
+```
+
+// specify layers for the neural network:
+// input layer of size 4 (features), two intermediate of size 5 and 4
+// and output of size 3 (classes)
+```scala
+val layers = Array[Int](4, 5, 4, 3)
+```
+
+// create the trainer and set its parameters
+```scala
+val trainer = new MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setSeed(1234L).setMaxIter(100)
+val model = trainer.fit(train)
+```
+
+// compute accuracy on the test set
+```scala
+val result = model.transform(test)
+val predictionAndLabels = result.select("prediction", "label")
+val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
+
+println(s"Test set accuracy = ${evaluator.evaluate(predictionAndLabels)}")
 ```
