@@ -81,3 +81,53 @@ println(s"Test Error = ${(1.0 - accuracy)}")
 // Mostrar por etapas la clasificación del modelo de árbol
 val treeModel = model.stages(2).asInstanceOf[DecisionTreeClassificationModel]
 println(s"Learned classification tree model:\n ${treeModel.toDebugString}")
+
+/////////////////////////////////////////////////////////Logistic Regresion//////////////////////////////////////////////////////////////////
+import org.apache.spark.ml.feature.{VectorAssembler, StringIndexer, VectorIndexer, OneHotEncoder}
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.ml.feature.VectorAssembler
+import org.apache.spark.ml.linalg.Vectors
+import org.apache.spark.ml.Pipeline
+import org.apache.log4j._
+
+Logger.getLogger("org").setLevel(Level.ERROR)
+
+df.printSchema()
+
+val label = new StringIndexer().setInputCol("y").setOutputCol("label")
+val labeltransform = label.fit(df).transform(df)
+
+val assembler = (new VectorAssembler(). setInputCols (Array ("balance", "duration", "campaign", "previous")).setOutputCol("features"))
+val featurestransform = assembler.transform(labeltransform)
+
+val df2 = featurestransform.select("features", "label")
+
+val logregdata = df2.na.drop()
+
+
+//val assembler = (new VectorAssembler(). setInputCols (Array ("balance", "duration", "campaign", "previous")).setOutputCol("features"))
+
+val Array(training, test) = df2.randomSplit(Array(0.7, 0.3), seed = 12345)
+
+
+val lr = new LogisticRegression()
+
+// val pipeline = new Pipeline().setStages(Array(genderIndexer,embarkIndexer,embarkEncoder,assembler,lr))
+val pipeline = new Pipeline().setStages(Array(genderIndexer,genderEncoder,assembler,lr))
+
+val model = pipeline.fit(training)
+
+val results = model.transform(test)
+
+
+//Probar el modelo solo se puede con la libreria vieja
+import org.apache.spark.mllib.evaluation.MulticlassMetrics
+
+val predictionAndLabels = results.select($"prediction",$"label").as[(Double, Double)].rdd
+val metrics = new MulticlassMetrics(predictionAndLabels)
+
+// Matriz de confusion
+println("Confusion matrix:")
+println(metrics.confusionMatrix)
+
+metrics.accuracy
