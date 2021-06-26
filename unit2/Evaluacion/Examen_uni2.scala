@@ -1,6 +1,8 @@
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 cd /usr/local/
 cd spark
 bin/spark-shell
+
 import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 import org.apache.spark.ml.feature. {VectorAssembler, StringIndexer}
