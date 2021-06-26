@@ -19,3 +19,19 @@ val Features = (new VectorAssembler(). setInputCols (Array ("balance", "duration
 val featurestransform = Features.transform(labeltransform)
 
 val df2 = featurestransform.select("features", "label")
+
+/////////////////////////////////////////////////////////////////SVM////////////////////////////////////////////////////////////////////////
+import org.apache.spark.ml.classification.LinearSVC
+
+// Split data into training (60%) and test (40%).
+val splits = df2.randomSplit(Array(0.7, 0.3), seed = 11L)
+val training = splits(0)
+val test = splits(1)
+
+val lsvc = new LinearSVC().setMaxIter(10).setRegParam(0.1)
+
+// Realizamos un fit para ajustar el modelo.
+val lsvcModel = lsvc.fit(training)
+
+// Imprime los coeficientes e intercepta para el Linear SVC.
+println(s"Coefficients: ${lsvcModel.coefficients} Intercept: ${lsvcModel.intercept}")
